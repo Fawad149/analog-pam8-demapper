@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pam8-demapper"
+version = "0.1.0"
+description = "Software reproduction of the analog PAM-8 demapper study (Hemza et al.)"
+requires-python = ">=3.10"
+dependencies = ["numpy", "matplotlib", "scipy"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
