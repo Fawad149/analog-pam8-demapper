@@ -1,5 +1,5 @@
 import numpy as np
-from pam8 import D, X, LABELS, ALPHA, BETA, llr_exact, llr_maxlog
+from pam8 import D, X, LABELS, ALPHA, BETA, llr_exact, llr_maxlog, simulate, gmi, gmi_best_s
 
 
 def test_energy():
@@ -25,3 +25,18 @@ def test_hand_calculation():
 def test_maxlog_scales_with_snr():
     r = np.linspace(-8 * D, 8 * D, 101)
     assert np.allclose(llr_maxlog(r, 10), 10 * llr_maxlog(r, 1))
+
+def test_gmi_by_hand():
+    # bit was 1 and the LLR is +5: 1 - log2(1 + e^-5) = 0.9903
+    assert np.isclose(gmi(np.array([5.0]), np.array([1])), 0.9903, atol=1e-4)
+    # LLR 0 carries no information
+    assert np.isclose(gmi(np.array([0.0]), np.array([0])), 0)
+
+
+def test_exact_best_s_is_one():
+    # for exact LLRs the best scaling is s = 1 (Ivanov eq. 9)
+    r, bits = simulate(5, 100_000)
+    llrs = llr_exact(r, 10 ** 0.5)
+    for k in range(3):
+        g, s = gmi_best_s(llrs[:, k], bits[:, k])
+        assert abs(s - 1) < 0.1
