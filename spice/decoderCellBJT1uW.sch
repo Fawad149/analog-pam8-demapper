@@ -101,13 +101,6 @@ C {opin.sym} 480 150 0 0 {name=p4 lab=vout}
 C {ipin.sym} 110 -120 3 0 {name=p5 lab=ibias}
 C {ipin.sym} 150 80 2 0 {name=p2 lab=Vin}
 C {ipin.sym} -220 80 0 0 {name=p6 lab=vref}
-C {sg13g2_pr/npn13G2v.sym} -160 230 0 1 {name=Q1
-model=npn13G2v
-spiceprefix=X
- Nx=1
- El=1.0
-  mm_ok=1
- }
 C {sg13g2_pr/npn13G2.sym} 90 230 0 0 {name=Q2
 model=npn13G2
  spiceprefix=X
@@ -121,6 +114,12 @@ model=npn13G2
   mm_ok=1
  }
 C {sg13g2_pr/npn13G2.sym} 460 230 0 0 {name=Q4
+model=npn13G2
+ spiceprefix=X
+ Nx=1
+  mm_ok=1
+ }
+C {sg13g2_pr/npn13G2.sym} -160 230 0 1 {name=Q1
 model=npn13G2
  spiceprefix=X
  Nx=1

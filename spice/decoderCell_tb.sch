@@ -53,7 +53,7 @@ C {decoderCell.sym} -10 -10 0 0 {name=x1}
 C {vsource.sym} -430 120 0 0 {name=V1 value=1.6 savecurrent=false}
 C {vsource.sym} -360 120 0 0 {name=V2 value=0.32 savecurrent=false}
 C {vsource.sym} -300 120 0 0 {name=V3 value=0.32 savecurrent=false}
-C {isource.sym} -230 120 0 0 {name=I0 value=10u}
+C {isource.sym} -230 120 0 0 {name=I0 value=100u}
 C {gnd.sym} -160 30 0 0 {name=l1 lab=GND}
 C {gnd.sym} -300 150 0 0 {name=l2 lab=GND}
 C {gnd.sym} -360 150 0 0 {name=l3 lab=GND}
@@ -70,7 +70,11 @@ C {lab_pin.sym} -160 10 0 0 {name=p8 sig_type=std_logic lab=Vin}
 C {opin.sym} 140 -50 0 0 {name=p9 lab=vout}
 C {devices/code_shown.sym} -100 130 0 0 {name=MODEL only_toplevel=true
 format="tcleval( @value )"
-value=".lib cornerMOSlv.lib mos_tt
+value="
+.lib cornerMOShv.lib mos_tt
+.lib cornerHBT.lib hbt_typ
+.lib cornerRES.lib res_typ
+.lib cornerDIO.lib dio_tt
 "}
 C {devices/code_shown.sym} -580 -140 0 0 {name=NGSPICE
 only_toplevel=true
@@ -79,12 +83,7 @@ value="
 save all
 op
 dc V2 0 0.64 1m
-let iout = (1.6 - v(vout)) / 3k
-plot v(vout)
-plot iout*1e6 ylabel 'Iout [uA]'
-print v(x1.net4) v(x1.net5) v(vout)
-write decoderCell.raw
-wrdata cell_dc.txt v(vout) iout
+wrdata bjt_min.txt v(vout) v(x1.net4) v(x1.net5)
 .endc
 " }
 C {launcher.sym} 280 590 0 0 {name=h5
