@@ -7,7 +7,7 @@ name = "pam8-demapper"
 version = "0.1.0"
 description = "Software reproduction of the analog PAM-8 demapper study (Hemza et al.)"
 requires-python = ">=3.10"
-dependencies = ["numpy", "matplotlib", "scipy"]
+dependencies = ["numpy", "matplotlib"]
 
 [project.optional-dependencies]
 dev = ["pytest"]

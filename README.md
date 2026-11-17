@@ -5,7 +5,7 @@ analog PAM-8 demapper for high-speed communications" (ISCAS 2026), using Ivanov 
 "On the information loss of the max-log approximation in BICM systems"
 (IEEE Trans. Inf. Theory, 2016) for the theory.
 
-Author: <your name>
+Author: Muhammad Fawad Pervez Siddiqui
 
 ## Setup
 ```bash
