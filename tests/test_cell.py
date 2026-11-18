@@ -7,7 +7,6 @@ def test_iout_from_vout():
 
 
 def test_corner_of_ideal_ramp():
-    # ideal ramp: 0 above 0.32 V, rising 50 uA/V below, flat at 10 uA below 0.12 V
     vin = np.linspace(0, 0.64, 641)
     iout = 10e-6 * np.clip((0.32 - vin) / 0.2, 0, 1)
     assert np.isclose(corner_voltage(vin, iout), 0.32)
